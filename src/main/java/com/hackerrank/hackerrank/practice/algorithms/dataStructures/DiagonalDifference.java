@@ -1,41 +1,37 @@
 package com.hackerrank.hackerrank.practice.algorithms.dataStructures;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.hackerrank.hackerrank.util.Util;
 
-public class DiagonalDifference {
-    private List<List<Integer>> matrixSquare = new ArrayList<List<Integer>>();
+public class DiagonalDifference  extends Util {
 
     public DiagonalDifference() {
         this.solution();
     }
 
     public void solution() {
-        List<Integer> list1 = new ArrayList<>();
-        list1.add(11);
-        list1.add(2);
-        list1.add(4);
+        int arr[][] = {
+                        {11, 2, 4},
+                        {4 , 5, 6},
+                        {10, 8, -12}
+                      };
+        int n = arr.length;
+        int left = 0;
+        int right = 0;
 
-        List<Integer> list2 = new ArrayList<>();
-        list2.add(4);
-        list2.add(5);
-        list2.add(6);
+        this.printMatrixSquare(arr);
 
-        List<Integer> list3 = new ArrayList<>();
-        list3.add(10);
-        list3.add(8);
-        list3.add(-12);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == j) {
+                    left = left + arr[i][j];
+                }
 
-        matrixSquare.add(list1);
-        matrixSquare.add(list2);
-        matrixSquare.add(list3);
-        System.out.println("-----------------------------------------------------------------------------------------");
-        for (List<Integer> integers : matrixSquare) {
-            for (Integer element : integers) {
-                System.out.printf("%d ", element);
+                if (j == (n - 1) - i) {
+                    right = right + arr[i][j];
+                }
             }
-            System.out.println();
         }
-        System.out.println("-----------------------------------------------------------------------------------------");
+
+        System.out.println("Diagonal difference: " + Math.abs(left - right));
     }
 }
